@@ -1,0 +1,13 @@
+/*Minimal CSS to space things out a tad*/
+
+#buttons {
+  margin-bottom: 15px;
+}
+
+#containerLeft {
+  margin-top: 30px;
+}
+
+#containerRight {
+  margin-top: 30px;
+}

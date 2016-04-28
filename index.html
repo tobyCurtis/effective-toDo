@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>AngularJS</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/index.css">
+  <script src="/index.js"></script>
+</head>
+
+<body ng-controller="myCtrl" ng-app="myApp">
+  <div id="containerLeft" class="col-md-4">
+    <!--       Info Panel -->
+    <div class="panel panel-info" id="info">
+      <div class="panel-heading">Task Input</div>
+      <div class="panel-body">
+        <label for="task">Task:</label>
+        <input type="text" class="form-control" id="task" ng-model="task">
+        <!-- Priority Select -->
+        <label for="priority">Priority:</label>
+        <select id="priority" class="form-control" ng-model="color">
+          <option value="3">High</option>
+          <option value="2">Medium</option>
+          <option value="1">Low</option>
+        </select>
+      </div>
+      <!--     Footer with Button   -->
+      <div class="panel-footer">
+        <button type="submit" class="btn btn-primary" ng-click="addTask()">Add To Do</button>
+      </div>
+    </div>
+  </div>
+  <div id="containerRight" class="col-md-8">
+  <!--     Button group -->
+  <div class="btn-group" role="group" class="col-md-8" id="buttons">
+    <button type="button" class="btn btn-primary" ng-click="orderMethod = '-priority'">Order by Higheest Priority</button>
+    <button type="button" class="btn btn-primary" ng-click="orderMethod = 'priority'">Order by Lowest Priority</button>
+    <button type="button" class="btn btn-primary" ng-click="orderMethod = 'task'">Order Alphabetically</button>
+  </div>
+  <!--     Display Panel -->
+  <table class="table table-bordered">
+    <tbody>
+      <tr ng-repeat="todo in todos | orderBy: orderMethod">
+        <td ng-class="{'danger':{{color}} === 3,'warning':{{color}} === 2,'success':{{color}}=== 1}">{{todo.task}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</body>
+
+</html>
